@@ -1,5 +1,6 @@
 package com.first.sqlite.tekup.bilel.todo.DataSource;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -43,6 +44,49 @@ public class PositionDataSource {
     public void close() {
         dbHelper.close();
     }
+
+
+
+
+
+
+
+
+
+
+    public Position createPosition(double longitude,double latitude) {
+        ContentValues values = new ContentValues();
+        values.put(MySQLiteHelper.POSITION_LONG, longitude);
+        values.put(MySQLiteHelper.POSITION_LAT, latitude);
+
+        long insertId = database.insert(MySQLiteHelper.TABLE_POSITION, null, values);
+
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_POSITION,allPositionColumns, MySQLiteHelper.POSITION_ID + " = " + insertId, null, null, null, null);
+        cursor.moveToFirst();
+        Position newPosition = cursorToPosition(cursor);
+        cursor.close();
+        return newPosition;
+    }
+
+    public void deletePosition(Position position) {
+        long id = position.getId();
+        System.out.println("Position deleted with id: " + id);
+        database.delete(MySQLiteHelper.TABLE_POSITION, MySQLiteHelper.POSITION_ID
+                + " = " + id, null);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public List<Position> getAllPosition() {

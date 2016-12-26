@@ -20,6 +20,8 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
+        btn.on
+
 
         assertEquals("com.first.sqlite.tekup.bilel.todo", appContext.getPackageName());
     }

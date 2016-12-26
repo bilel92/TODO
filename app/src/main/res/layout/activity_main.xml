@@ -10,8 +10,36 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.first.sqlite.tekup.bilel.todo.MainActivity">
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="81dp"
+        android:id="@+id/longitude"
+        android:inputType="text"
+        android:hint="longitude" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@+id/longitude"
+        android:layout_alignEnd="@+id/longitude"
+        android:layout_marginTop="11dp"
+        android:id="@+id/latitude"
+        android:inputType="text"
+        android:hint="latitude" />
+
+    <Button
+        android:text="add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/latitude"
+        android:layout_alignStart="@+id/latitude"
+        android:layout_marginTop="22dp"
+        android:id="@+id/add" />
+
 </RelativeLayout>

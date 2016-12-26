@@ -1,5 +1,6 @@
 package com.first.sqlite.tekup.bilel.todo.DataSource;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -52,6 +53,66 @@ public class TacheDataSource {
     public void close() {
         dbHelper.close();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public Tache createTache(String title,String description,String image,String video,long position,int user,int etat,Date date) {
+
+        ContentValues values = new ContentValues();
+        values.put(MySQLiteHelper.TACHE_TITILE, title);
+        values.put(MySQLiteHelper.TACHE_DESCRiPTION, title);
+        values.put(MySQLiteHelper.TACHE_IMAGE, image);
+        values.put(MySQLiteHelper.TACHE_VIDEO, video);
+        values.put(MySQLiteHelper.TACHE_POSTION, position);
+        values.put(MySQLiteHelper.TACHE_USER, user);
+        values.put(MySQLiteHelper.TACHE_ETAT, etat);
+        values.put(MySQLiteHelper.TACHE_DATE, String.valueOf(date));
+
+
+
+
+        long insertId = database.insert(MySQLiteHelper.TABLE_TACHE, null, values);
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_TACHE,allTacheColumns, MySQLiteHelper.TACHE_ID + " = " + insertId, null, null, null, null);
+        cursor.moveToFirst();
+        Tache newTache = cursorToTache(cursor);
+        cursor.close();
+        return newTache;
+    }
+
+    public void deleteTache(Tache tache) {
+        long id = tache.getId();
+        System.out.println("Tache deleted with id: " + id);
+        database.delete(MySQLiteHelper.TABLE_TACHE, MySQLiteHelper.TACHE_ID
+                + " = " + id, null);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public List<Tache> getAllTache() {
